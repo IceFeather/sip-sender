@@ -2,13 +2,11 @@ package fr.icefeather.sip.sender;
 
 import fr.icefeather.sip.sender.utils.SipSender;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +57,27 @@ public class App {
         JOptionPane d = new JOptionPane();
         d.showMessageDialog(appPanel.getParent(), e.getMessage(), titre, JOptionPane.ERROR_MESSAGE);
     }
+
+
+    public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException, IOException {
+        for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+            if ("Windows".equals(info.getName())) {
+                UIManager.setLookAndFeel(info.getClassName());
+                break;
+            }
+        }
+        JFrame frame = new JFrame("sip-sender");
+        final App application = new App();
+//        frame.setIconImage(ImageIO.read(application.getClass().getResource("/icons/inbox.png")));
+        final JPanel panel = application.appPanel;
+
+        frame.setContentPane(panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+
 
     class AppTextField implements AppFormField {
 
